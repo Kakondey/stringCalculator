@@ -1,4 +1,4 @@
-const stringCalculator = require('../src/stringCalculator');
+const { add } = require('../src/stringCalculator');
 
 describe('String Calculator', () => {
   test('adds zero when given an empty string', () => {
@@ -10,7 +10,7 @@ describe('String Calculator', () => {
   });
 
   test('correctly adds numbers seperated by commas', () => {
-    expect(add('1,2,3').toBe(6));
+    expect(add('1,2,3')).toBe(6);
   });
 
   test('correctly adds numbers seperated by newlines', () => {
@@ -18,12 +18,15 @@ describe('String Calculator', () => {
   });
 
   test('allows changing the delimiter', () => {
-    expect(add('//;\n;2')).toBe(3);
+    expect(add('//;\n1;2')).toBe(3);
   });
 
+  test('allows changing the delimiter 2', () => {
+    expect(add('//<\n1<2<5')).toBe(8);
+  });
   test('throws an exception for a negative number', () => {
     expect(() => add('-1')).toThrow(
-      'negative numbers are not allowed -1'
+      'negative numbers not allowed -1'
     );
   });
 
